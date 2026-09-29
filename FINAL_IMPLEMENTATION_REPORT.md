@@ -34,7 +34,10 @@ Tested on the held-out test set:
 The React application (useVoiceAssistant.ts) intercepts voice transcripts and calls parseVoiceIntentAsync which invokes the local predictIntentTFJS function. If the ML model is unavailable, it gracefully falls back to the original rule-based parser. 
 
 ## Voice Pipeline
-Microphone -> Browser SpeechRecognition API (Web Speech API) -> Transcript -> Local TF.js BiLSTM.
+Microphone -> User-initiated voice interaction through the Voice button, followed by automatic termination after approximately 3–4 seconds of silence -> Browser SpeechRecognition API (Web Speech API) -> Transcript -> Local TF.js BiLSTM.
+
+## Kitchen Buddy (Conversational Component)
+Kitchen Buddy is an open-ended LLM-based conversational component that helps users with kitchen and food-related questions by taking pantry items as context. It securely interacts with the Gemini API through a Cloudflare Worker proxy.
 
 ## Chatbot Pipeline
 Browser receives Transcript -> Tokenizes sequence locally -> Model predicts Intent and Confidence -> Entity extraction (deterministic NLP fallback for quantities/items) -> React orchestrates UI state (e.g. adding item) -> SpeechSynthesis (TTS) vocalizes the result.

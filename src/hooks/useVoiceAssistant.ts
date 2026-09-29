@@ -23,6 +23,20 @@ export function useVoiceAssistant() {
   const voiceServiceRef = useRef<VoiceRecognitionService | null>(null);
   const ttsServiceRef = useRef<SpeechSynthesisService | null>(null);
 
+  const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const resetSilenceTimeout = useCallback((currentText?: string) => {
+    if (silenceTimerRef.current) {
+      clearTimeout(silenceTimerRef.current);
+    }
+    silenceTimerRef.current = setTimeout(() => {
+      stopListening();
+      if (currentText && currentText.trim()) {
+        processCommand(currentText);
+      }
+    }, 3500);
+  }, []);
+
   // Initialize Speech Services
   useEffect(() => {
     const voiceService = new VoiceRecognitionService(language);
@@ -32,10 +46,7 @@ export function useVoiceAssistant() {
 
     voiceService.onResultCallback = (text, isFinal) => {
       setTranscript(text);
-      resetSilenceTimeout();
-      if (isFinal) {
-        processCommand(text);
-      }
+      resetSilenceTimeout(text);
     };
 
     voiceService.onVolumeChangeCallback = (vol) => {
@@ -49,26 +60,14 @@ export function useVoiceAssistant() {
     };
 
     voiceService.onEndCallback = () => {
-      // If we are still supposed to be listening (not idle), try to restart
-      if (voiceServiceRef.current?.isListening) {
-         try { voiceServiceRef.current.start(); } catch(e) {}
-      }
+      // Clean up timer if it ends natively
+      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
+      setVoiceState('idle');
     };
 
     voiceServiceRef.current = voiceService;
     ttsServiceRef.current = ttsService;
-  }, [language, ttsEnabled]);
-
-  const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const resetSilenceTimeout = useCallback(() => {
-    if (silenceTimerRef.current) {
-      clearTimeout(silenceTimerRef.current);
-    }
-    silenceTimerRef.current = setTimeout(() => {
-      stopListening();
-    }, 5500);
-  }, []);
+  }, [language, ttsEnabled, resetSilenceTimeout]);
 
   // Persist items & history
   useEffect(() => {
@@ -126,14 +125,13 @@ export function useVoiceAssistant() {
   const startListening = () => {
     setTranscript('');
     setVoiceState('listening');
-    // Removed speak greeting to prevent self-feedback loop
     
     if (voiceServiceRef.current) {
       const success = voiceServiceRef.current.start();
       if (!success) {
         setVoiceState('error');
       } else {
-        resetSilenceTimeout();
+        resetSilenceTimeout('');
       }
     }
   };

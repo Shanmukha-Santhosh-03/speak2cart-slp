@@ -50,27 +50,22 @@ export class VoiceRecognitionService {
     if (!SpeechClass) return;
 
     this.recognition = new SpeechClass();
-    this.recognition.continuous = false;
+    this.recognition.continuous = true;
     this.recognition.interimResults = true;
     this.recognition.maxAlternatives = 1;
     this.recognition.lang = this.getLangCode(this.language);
 
     this.recognition.onresult = (event: any) => {
-      let interimTranscript = '';
-      let finalTranscript = '';
+      let fullTranscript = '';
 
-      for (let i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          finalTranscript += event.results[i][0].transcript;
-        } else {
-          interimTranscript += event.results[i][0].transcript;
-        }
+      for (let i = 0; i < event.results.length; ++i) {
+        fullTranscript += event.results[i][0].transcript;
       }
 
-      if (finalTranscript && this.onResultCallback) {
-        this.onResultCallback(finalTranscript, true);
-      } else if (interimTranscript && this.onResultCallback) {
-        this.onResultCallback(interimTranscript, false);
+      if (fullTranscript && this.onResultCallback) {
+        // Pass the full transcript and whether the last piece is final
+        const isFinal = event.results[event.results.length - 1].isFinal;
+        this.onResultCallback(fullTranscript, isFinal);
       }
     };
 

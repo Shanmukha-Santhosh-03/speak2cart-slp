@@ -85,9 +85,18 @@ export const KitchenBuddy: React.FC<KitchenBuddyProps> = ({ inventory, onAddShop
       setTimeout(() => setMascotState(happy ? 'happy' : 'idle'), 2000);
       
     } catch (err) {
-      console.error("Backend error:", err);
-      // Fallback
-      setMessages(prev => [...prev, { id: Date.now().toString(), sender: 'buddy', text: "Kitchen Buddy is temporarily unavailable. Please try again." }]);
+      const errMsg = err instanceof Error ? err.message : String(err);
+      
+      let userMessage = "Kitchen Buddy is temporarily unavailable. Please try again.";
+      if (errMsg.includes('MISSING_API_KEY') || errMsg.includes('INVALID_API_KEY')) {
+        userMessage = "I'm not fully configured yet! Please check the API key setup.";
+      } else if (errMsg.includes('RATE_LIMIT')) {
+        userMessage = "I'm getting too many questions right now! Please wait a moment.";
+      } else if (errMsg.includes('NETWORK_ERROR') || errMsg.includes('VITE_KITCHEN_BUDDY_API_URL')) {
+        userMessage = "I can't reach my server. Please check your internet or configuration.";
+      }
+
+      setMessages(prev => [...prev, { id: Date.now().toString(), sender: 'buddy', text: userMessage }]);
       setMascotState('idle');
     }
   };
