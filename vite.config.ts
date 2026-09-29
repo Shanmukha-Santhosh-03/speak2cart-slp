@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/speak2cart-slp/',
   plugins: [
     react(),
     tailwindcss()

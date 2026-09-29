@@ -1,27 +1,32 @@
 # Deployment Guide
 
 ## Overview
-The application consists of a React/Vite frontend and a Python FastAPI machine learning backend.
+The application consists of a React/Vite frontend hosted on GitHub Pages, utilizing local browser-based TensorFlow.js for Machine Learning inference, and a Cloudflare Worker acting as a secure proxy for the Gemini API (Kitchen Buddy).
 
-## Frontend
+## Frontend (GitHub Pages)
 - **Framework**: React (TypeScript) + Vite
-- **Deployment Targets**: Vercel, Netlify, Cloudflare Pages, or AWS S3.
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist/`
+- **Deployment Target**: GitHub Pages
+- **Build/Deployment**: Handled automatically via GitHub Actions (.github/workflows/deploy.yml).
+- **Build Command**: npm run build
+- **Output Directory**: dist/
+- **Routing**: index.html is copied to 404.html to support React SPA routing on GitHub Pages.
+- **Environment Variables**:
+  - VITE_KITCHEN_BUDDY_API_URL: The public URL of the deployed Cloudflare Worker.
 
-## Backend (ML API)
-- **Framework**: FastAPI (Python)
-- **Requirements**: `python 3.10+`, `tensorflow`, `fastapi`, `uvicorn`
-- **Deployment Targets**: Heroku, Render, AWS EC2, or Google Cloud Run.
-- **Start Command**: `uvicorn app:app --host 0.0.0.0 --port 8000`
-- **Important**: The backend requires the `ml/artifacts/` folder containing the saved model `.keras` file and the JSON tokenizer/label encoders.
+## Machine Learning (TensorFlow.js)
+- **Inference**: Conducted entirely locally in the user\'s browser using @tensorflow/tfjs.
+- **Model**: The trained Keras BiLSTM model (ml/artifacts/model.keras) was converted to a TFJS Layers model (public/tfjs_model/).
+- **Dependencies**: No Python backend is required for production inference, drastically reducing hosting costs to \.
 
-## Environment Variables
-If deployed, the frontend needs to know where the ML API lives. 
-By default, the code hardcodes `http://localhost:8000/predict-intent`. 
-For production, this should be swapped to an environment variable in Vite, e.g., `VITE_ML_API_URL`.
+## Kitchen Buddy (Cloudflare Worker)
+- **Framework**: Cloudflare Workers
+- **Purpose**: Securely proxies requests to the Gemini API so the GEMINI_API_KEY is not exposed in the frontend.
+- **Deployment**:
+  cd cloudflare
+  npm install wrangler -g
+  wrangler deploy
+  wrangler secret put GEMINI_API_KEY
+- **Configuration**: Ensure the deployed worker URL is set as VITE_KITCHEN_BUDDY_API_URL in the GitHub Actions secrets.
 
 ## Known Deployment Limitations
-- **Hosting Credentials**: This project is prepared for deployment, but requires actual platform credentials to push live.
-- **Model Size**: The TensorFlow dependency is large (~400MB). A lightweight hosting solution might experience slow cold-starts. AWS Lambda may require containerization due to size limits.
-- **HTTPS Requirement**: Browser Speech Recognition (Web Speech API) strictly requires HTTPS to function without repeatedly prompting for microphone permission. Any deployed frontend *must* be served over HTTPS.
+- **HTTPS Requirement**: Browser Speech Recognition (Web Speech API) strictly requires HTTPS to function without repeatedly prompting for microphone permission. GitHub Pages automatically provides HTTPS.

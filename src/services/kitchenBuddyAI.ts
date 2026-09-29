@@ -17,8 +17,13 @@ export interface KitchenBuddyResponse {
 export const kitchenBuddy = {
   ask: async (request: KitchenBuddyRequest): Promise<KitchenBuddyResponse> => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-      const response = await fetch(`${API_URL}/api/kitchen-buddy`, {
+      const API_URL = import.meta.env.VITE_KITCHEN_BUDDY_API_URL;
+      
+      if (!API_URL) {
+        throw new Error('VITE_KITCHEN_BUDDY_API_URL is not configured');
+      }
+
+      const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,7 +35,7 @@ export const kitchenBuddy = {
       }
       return await response.json();
     } catch (error) {
-      console.error('Error contacting Kitchen Buddy backend:', error);
+      console.error('Error contacting Kitchen Buddy worker:', error);
       throw error;
     }
   }

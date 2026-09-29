@@ -1,4 +1,4 @@
-import type { Category, ParsedCommand } from '../types';
+import type { Category, ParsedCommand, IntentType } from '../types';
 import { MOCK_PRODUCTS } from '../data/mockProducts';
 
 // Helper maps for unit recognition
@@ -253,46 +253,24 @@ export function parseVoiceIntent(rawInput: string): ParsedCommand {
   };
 }
 
+import { predictIntentTFJS } from './tfjsModel';
+
 export async function parseVoiceIntentAsync(rawInput: string): Promise<ParsedCommand> {
   try {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-    const response = await fetch(`${API_URL}/predict-intent`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text: rawInput })
-    });
-    
-    if (!response.ok) {
-      throw new Error(`API error: ${response.status}`);
-    }
-    
-    const data = await response.json();
-    
-    // We also want to extract quantity, unit, and clean item from the text 
-    // even if the model predicts the intent. We can use the existing rule logic 
-    // to populate entities, then override the intent and confidence with the model's prediction.
-    
     // First, get the rule-based parsed command (this handles all entity extraction gracefully)
     const ruleBasedParsed = parseVoiceIntent(rawInput);
     
-    // Then override intent and confidence
-    ruleBasedParsed.intent = data.intent;
-    ruleBasedParsed.confidence = data.confidence;
+    // Call the local TFJS model
+    const prediction = await predictIntentTFJS(rawInput);
     
-    // If the API returned entities that are more specific, override (but our rule based is usually better)
-    if (data.entities) {
-       if (data.entities.item && data.entities.item != "grocery item") ruleBasedParsed.item = data.entities.item;
-       if (data.entities.quantity) ruleBasedParsed.quantity = data.entities.quantity;
-       if (data.entities.unit) ruleBasedParsed.unit = data.entities.unit;
-       if (data.entities.priceFilter) ruleBasedParsed.priceFilter = data.entities.priceFilter;
-    }
+    // Override intent and confidence with the model's prediction
+    ruleBasedParsed.intent = prediction.intent as IntentType;
+    ruleBasedParsed.confidence = prediction.confidence;
 
     return ruleBasedParsed;
     
   } catch (error) {
-    console.warn("ML API unavailable, falling back to rule parser.", error);
+    console.warn("TFJS Model unavailable or failed, falling back to rule parser.", error);
     return parseVoiceIntent(rawInput);
   }
 }
