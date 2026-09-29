@@ -17,11 +17,7 @@ export interface KitchenBuddyResponse {
 export const kitchenBuddy = {
   ask: async (request: KitchenBuddyRequest): Promise<KitchenBuddyResponse> => {
     try {
-      const API_URL = import.meta.env.VITE_KITCHEN_BUDDY_API_URL;
-      
-      if (!API_URL) {
-        throw new Error('VITE_KITCHEN_BUDDY_API_URL is not configured');
-      }
+      const API_URL = import.meta.env.VITE_KITCHEN_BUDDY_API_URL || 'https://speak2cart-kitchen-buddy.shanmukha-santhosh-03.workers.dev';
 
       let response: Response;
       try {

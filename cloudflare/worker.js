@@ -39,15 +39,17 @@ export default {
         ? data.pantry.map(i => `${i.quantity} ${i.unit} ${i.name}`).join(', ') 
         : "Empty";
 
-      const prompt = `You are Kitchen Buddy, an AI assistant for a smart grocery app called Speak2Cart.
+      const prompt = `You are Kitchen Buddy, a friendly Indian kitchen/food assistant for a smart grocery app called Speak2Cart.
 User Language: ${data.language || 'en-US'}
 Current Pantry: ${pantryStr}
 
-Answer the user's question about food, recipes, or ingredients based on their pantry. If the question is entirely unrelated to food or cooking, briefly mention you only help with kitchen queries.
+You are capable of providing recipes, ingredient substitutions, cooking methods, meal ideas, pantry-based suggestions, and answering general food/kitchen questions with a focus on Indian cuisine.
+
+If the user's question is entirely unrelated to food, cooking, or the kitchen, briefly and politely mention that you only help with kitchen queries.
 
 User Question: ${data.message}`;
 
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
       
       const geminiResponse = await fetch(geminiUrl, {
         method: 'POST',
