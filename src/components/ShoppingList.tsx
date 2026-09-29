@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import type { ShoppingItem } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Trash2 } from 'lucide-react';
 
 interface ShoppingListProps {
   items: ShoppingItem[];
@@ -53,9 +52,12 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
 
   const handleDeleteSelected = () => {
     if (selectedIds.size === 0) {
-      setCheckoutError('Please select at least one item.');
+      setCheckoutError('Select at least one item to delete.');
       return;
     }
+    const confirmed = window.confirm('Are you sure you want to remove the selected items?');
+    if (!confirmed) return;
+
     selectedIds.forEach(id => {
       onRemoveItem(id);
     });
@@ -93,8 +95,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
                 <th className="px-4 py-3 w-16 text-center border-r border-[#E7E0D5]">S.No.</th>
                 <th className="px-6 py-3 border-r border-[#E7E0D5]">Product Name</th>
                 <th className="px-6 py-3 border-r border-[#E7E0D5]">Quantity</th>
-                <th className="px-6 py-3 text-center border-r border-[#E7E0D5]">Select</th>
-                <th className="px-4 py-3 text-center">Delete</th>
+                <th className="px-6 py-3 text-center">Select</th>
               </tr>
             </thead>
             <tbody>
@@ -118,7 +119,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
                       <td className="px-6 py-4 text-sm text-[#78716C] border-r border-[#E7E0D5]">
                         {item.quantity && item.unit ? `${item.quantity} ${item.unit}` : 'Not specified'}
                       </td>
-                      <td className="px-6 py-4 text-center border-r border-[#E7E0D5]">
+                      <td className="px-6 py-4 text-center">
                         <label className="flex items-center justify-center cursor-pointer">
                           <span className="sr-only">Select</span>
                           <input 
@@ -128,16 +129,6 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
                             className="w-5 h-5 rounded border-[#E7E0D5] text-[#2C4A3E] focus:ring-[#2C4A3E] bg-[#F4EFE6] cursor-pointer"
                           />
                         </label>
-                      </td>
-                      <td className="px-4 py-4 text-center">
-                        <button
-                          onClick={() => onRemoveItem(item.id)}
-                          className="p-2 text-[#78716C] hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
-                          aria-label="Delete item"
-                          title="Delete item"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
                       </td>
                     </motion.tr>
                   );
@@ -150,55 +141,54 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
 
       {activeItems.length > 0 && (
         <div className="flex flex-col items-center justify-center pt-4 space-y-6">
-          <div className="flex items-center gap-2 self-start md:self-center ml-2 md:ml-0">
-            <label className="flex items-center cursor-pointer gap-2 group">
-              <input 
-                type="checkbox"
-                checked={selectedIds.size === activeItems.length && activeItems.length > 0}
-                ref={(input) => {
-                  if (input) {
-                    input.indeterminate = selectedIds.size > 0 && selectedIds.size < activeItems.length;
-                  }
-                }}
-                onChange={handleSelectAll}
-                className="w-5 h-5 rounded border-[#E7E0D5] text-[#2C4A3E] focus:ring-[#2C4A3E] bg-[#F4EFE6] cursor-pointer"
-                aria-label="Select all shopping list items"
-              />
-              <span className="font-medium text-[#1C1917] group-hover:text-[#2C4A3E] transition-colors">Select All</span>
-            </label>
-          </div>
+          <div className="flex items-center justify-between w-full max-w-lg px-2">
+            <div className="flex items-center gap-2">
+              <label className="flex items-center cursor-pointer gap-2 group">
+                <input 
+                  type="checkbox"
+                  checked={selectedIds.size === activeItems.length && activeItems.length > 0}
+                  ref={(input) => {
+                    if (input) {
+                      input.indeterminate = selectedIds.size > 0 && selectedIds.size < activeItems.length;
+                    }
+                  }}
+                  onChange={handleSelectAll}
+                  className="w-5 h-5 rounded border-[#E7E0D5] text-[#2C4A3E] focus:ring-[#2C4A3E] bg-[#F4EFE6] cursor-pointer"
+                  aria-label="Select all shopping list items"
+                />
+                <span className="font-medium text-[#1C1917] group-hover:text-[#2C4A3E] transition-colors">Select All</span>
+              </label>
+            </div>
 
-          <div className="flex flex-col items-center">
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex items-center gap-4">
               <button
                 onClick={handleDeleteSelected}
-                disabled={selectedIds.size === 0}
                 aria-label="Delete selected shopping list items"
-                className={`px-8 py-3.5 font-semibold text-lg rounded-full shadow-md transition-all ${
+                className={`px-6 py-2.5 font-semibold text-sm rounded-full shadow-sm transition-all ${
                   selectedIds.size === 0 
-                    ? 'bg-[#E7E0D5] text-[#A8A29E] cursor-not-allowed' 
-                    : 'bg-red-500 text-white hover:bg-red-600'
+                    ? 'bg-[#E7E0D5] text-[#A8A29E] cursor-pointer' 
+                    : 'bg-rose-500 text-white hover:bg-rose-600'
                 }`}
               >
                 Delete Selected
               </button>
               <button
                 onClick={handleCheckout}
-                disabled={selectedIds.size === 0}
                 aria-label="Checkout selected shopping list items"
-                className={`px-8 py-3.5 font-semibold text-lg rounded-full shadow-md transition-all ${
+                className={`px-6 py-2.5 font-semibold text-sm rounded-full shadow-sm transition-all ${
                   selectedIds.size === 0 
-                    ? 'bg-[#E7E0D5] text-[#A8A29E] cursor-not-allowed' 
+                    ? 'bg-[#E7E0D5] text-[#A8A29E] cursor-pointer' 
                     : 'bg-[#2C4A3E] text-white hover:bg-[#223B31]'
                 }`}
               >
-                Checkout {selectedIds.size > 0 ? `(${selectedIds.size} items)` : ''}
+                Checkout {selectedIds.size > 0 ? `(${selectedIds.size})` : ''}
               </button>
             </div>
-            {checkoutError && (
-              <p className="text-red-600 text-sm mt-3 font-medium animate-pulse">{checkoutError}</p>
-            )}
           </div>
+          
+          {checkoutError && (
+            <p className="text-red-600 text-sm font-medium animate-pulse">{checkoutError}</p>
+          )}
         </div>
       )}
 
