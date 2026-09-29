@@ -182,6 +182,7 @@ export function Workspace() {
                   items={items}
                   onToggleChecked={toggleItemChecked}
                   onClearCompleted={clearAllCompleted}
+                  onRemoveItem={removeItem}
                 />
               </div>
             </section>
@@ -209,7 +210,7 @@ export function Workspace() {
                <div className="flex-1 overflow-y-auto mb-4 space-y-4">
                   <div className="flex justify-start">
                     <div className="bg-[#F4EFE6] text-[#2C4A3E] px-4 py-3 rounded-2xl rounded-tl-sm max-w-[80%] text-sm">
-                      Hi there! I'm Shannu. Ask me what's in your pantry or what's expiring soon.
+                      Hi there! Ask me what's in your pantry or what's expiring soon.
                     </div>
                   </div>
                   {/* Chat history will be mapped here later */}
@@ -233,6 +234,7 @@ export function Workspace() {
                   items={items}
                   onToggleChecked={toggleItemChecked}
                   onClearCompleted={clearAllCompleted}
+                  onRemoveItem={removeItem}
                 />
              </div>
            </>
@@ -243,6 +245,7 @@ export function Workspace() {
               items={items}
               onToggleChecked={toggleItemChecked}
               onClearCompleted={clearAllCompleted}
+              onRemoveItem={removeItem}
             />
           )}
 

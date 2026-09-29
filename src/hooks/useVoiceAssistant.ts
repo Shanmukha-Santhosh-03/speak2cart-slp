@@ -173,7 +173,6 @@ export function useVoiceAssistant() {
         };
         setItems(prev => [...prev, newItem]);
         setVoiceState('success');
-        speak(`Added ${newItem.quantity} ${newItem.unit} of ${newItem.name}.`);
         break;
       }
 
@@ -182,7 +181,6 @@ export function useVoiceAssistant() {
         const targetName = parsed.item.toLowerCase();
         setItems(prev => prev.filter(i => !i.name.toLowerCase().includes(targetName)));
         setVoiceState('success');
-        speak(`Removed ${parsed.item} from the list.`);
         break;
       }
 
@@ -198,7 +196,6 @@ export function useVoiceAssistant() {
         confetti({ particleCount: 40, spread: 60, origin: { y: 0.8 } });
         setVoiceState('success');
         addToast('success', 'Item Checked', `Marked ${parsed.item} as completed`);
-        speak(`Checked off ${parsed.item}`);
         break;
       }
 
@@ -206,7 +203,6 @@ export function useVoiceAssistant() {
         setItems(prev => prev.filter(i => !i.checked));
         setVoiceState('success');
         addToast('info', 'List Cleaned', 'Removed all completed items');
-        speak('Cleared completed items from your list');
         break;
       }
 
@@ -214,14 +210,12 @@ export function useVoiceAssistant() {
         setSearchQuery(parsed.item || 'grocery');
         setVoiceState('success');
         addToast('info', 'Voice Search', `Searching for ${parsed.item || 'products'}`);
-        speak(`Found products matching ${parsed.item || 'your query'}`);
         break;
       }
 
       case 'GET_RECOMMENDATIONS': {
         setVoiceState('success');
         addToast('info', 'Smart Suggestions', 'Here are your replenishment & seasonal suggestions');
-        speak('Here are your personalized pantry suggestions based on your purchase history');
         break;
       }
 
@@ -230,7 +224,6 @@ export function useVoiceAssistant() {
         setSearchQuery(itemToSwap);
         setVoiceState('success');
         addToast('info', 'Smart Swap', `Showing health & dietary alternatives for ${itemToSwap}`);
-        speak(`Looking up substitutes for ${itemToSwap}`);
         break;
       }
 

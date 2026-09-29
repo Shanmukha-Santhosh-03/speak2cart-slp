@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import type { ShoppingItem } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Trash2 } from 'lucide-react';
 
 interface ShoppingListProps {
   items: ShoppingItem[];
   onToggleChecked: (id: string) => void;
   onClearCompleted: () => void;
+  onRemoveItem: (id: string) => void;
 }
 
 export const ShoppingList: React.FC<ShoppingListProps> = ({
   items,
   onToggleChecked,
+  onRemoveItem,
 }) => {
   const [checkoutError, setCheckoutError] = useState('');
 
@@ -78,7 +81,8 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
                 <th className="px-4 py-3 w-16 text-center border-r border-[#E7E0D5]">S.No.</th>
                 <th className="px-6 py-3 border-r border-[#E7E0D5]">Product Name</th>
                 <th className="px-6 py-3 border-r border-[#E7E0D5]">Quantity</th>
-                <th className="px-6 py-3 text-center">Select</th>
+                <th className="px-6 py-3 text-center border-r border-[#E7E0D5]">Select</th>
+                <th className="px-4 py-3 text-center">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -102,7 +106,7 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
                       <td className="px-6 py-4 text-sm text-[#78716C] border-r border-[#E7E0D5]">
                         {item.quantity && item.unit ? `${item.quantity} ${item.unit}` : 'Not specified'}
                       </td>
-                      <td className="px-6 py-4 text-center">
+                      <td className="px-6 py-4 text-center border-r border-[#E7E0D5]">
                         <label className="flex items-center justify-center cursor-pointer">
                           <span className="sr-only">Select</span>
                           <input 
@@ -112,6 +116,16 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
                             className="w-5 h-5 rounded border-[#E7E0D5] text-[#2C4A3E] focus:ring-[#2C4A3E] bg-[#F4EFE6] cursor-pointer"
                           />
                         </label>
+                      </td>
+                      <td className="px-4 py-4 text-center">
+                        <button
+                          onClick={() => onRemoveItem(item.id)}
+                          className="p-2 text-[#78716C] hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
+                          aria-label="Delete item"
+                          title="Delete item"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </td>
                     </motion.tr>
                   );
