@@ -126,7 +126,7 @@ export function useVoiceAssistant() {
   const startListening = () => {
     setTranscript('');
     setVoiceState('listening');
-    speak("Hello! I'm Speak2Cart. What would you like to add to your shopping list?");
+    // Removed speak greeting to prevent self-feedback loop
     
     if (voiceServiceRef.current) {
       const success = voiceServiceRef.current.start();
@@ -243,12 +243,11 @@ export function useVoiceAssistant() {
       }
     }
 
-    // Return to listening state for next command if timer is still active
-    setTimeout(() => {
-      if (silenceTimerRef.current) {
-        setVoiceState('listening');
-      }
-    }, 1500);
+    // Return to idle state after executing command
+    setVoiceState('idle');
+    if (voiceServiceRef.current) {
+      voiceServiceRef.current.stop();
+    }
   };
 
   // Helper emoji inferrer for custom items
