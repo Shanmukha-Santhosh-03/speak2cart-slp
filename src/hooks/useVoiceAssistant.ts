@@ -44,7 +44,7 @@ export function useVoiceAssistant() {
     ttsService.setEnabled(ttsEnabled);
     ttsService.setLanguage(language);
 
-    voiceService.onResultCallback = (text, isFinal) => {
+    voiceService.onResultCallback = (text) => {
       setTranscript(text);
       resetSilenceTimeout(text);
     };
@@ -116,11 +116,7 @@ export function useVoiceAssistant() {
     addToast('info', 'Audio Feedback', newStatus ? 'Voice confirmation ON' : 'Voice confirmation OFF');
   };
 
-  const speak = useCallback((text: string) => {
-    if (ttsServiceRef.current) {
-      ttsServiceRef.current.speak(text);
-    }
-  }, []);
+  // Removed speak function since we no longer want voice feedback
 
   const startListening = () => {
     setTranscript('');

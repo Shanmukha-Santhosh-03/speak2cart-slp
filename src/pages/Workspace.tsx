@@ -37,6 +37,7 @@ export function Workspace() {
     updateInventoryItem,
     removeInventoryItem,
     addInventoryItem,
+    removeItem,
     removeToast,
     setSearchQuery,
     getSmartRecommendations
