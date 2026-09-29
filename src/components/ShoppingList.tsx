@@ -51,6 +51,18 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
     setCheckoutError('');
   };
 
+  const handleDeleteSelected = () => {
+    if (selectedIds.size === 0) {
+      setCheckoutError('Please select at least one item.');
+      return;
+    }
+    selectedIds.forEach(id => {
+      onRemoveItem(id);
+    });
+    setSelectedIds(new Set());
+    setCheckoutError('');
+  };
+
   return (
     <div className="w-full space-y-6">
       
@@ -157,18 +169,32 @@ export const ShoppingList: React.FC<ShoppingListProps> = ({
           </div>
 
           <div className="flex flex-col items-center">
-            <button
-              onClick={handleCheckout}
-              disabled={selectedIds.size === 0}
-              aria-label="Checkout selected shopping list items"
-              className={`px-8 py-3.5 font-semibold text-lg rounded-full shadow-md transition-all ${
-                selectedIds.size === 0 
-                  ? 'bg-[#E7E0D5] text-[#A8A29E] cursor-not-allowed' 
-                  : 'bg-[#2C4A3E] text-white hover:bg-[#223B31]'
-              }`}
-            >
-              Checkout {selectedIds.size > 0 ? `(${selectedIds.size} items)` : ''}
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={handleDeleteSelected}
+                disabled={selectedIds.size === 0}
+                aria-label="Delete selected shopping list items"
+                className={`px-8 py-3.5 font-semibold text-lg rounded-full shadow-md transition-all ${
+                  selectedIds.size === 0 
+                    ? 'bg-[#E7E0D5] text-[#A8A29E] cursor-not-allowed' 
+                    : 'bg-red-500 text-white hover:bg-red-600'
+                }`}
+              >
+                Delete Selected
+              </button>
+              <button
+                onClick={handleCheckout}
+                disabled={selectedIds.size === 0}
+                aria-label="Checkout selected shopping list items"
+                className={`px-8 py-3.5 font-semibold text-lg rounded-full shadow-md transition-all ${
+                  selectedIds.size === 0 
+                    ? 'bg-[#E7E0D5] text-[#A8A29E] cursor-not-allowed' 
+                    : 'bg-[#2C4A3E] text-white hover:bg-[#223B31]'
+                }`}
+              >
+                Checkout {selectedIds.size > 0 ? `(${selectedIds.size} items)` : ''}
+              </button>
+            </div>
             {checkoutError && (
               <p className="text-red-600 text-sm mt-3 font-medium animate-pulse">{checkoutError}</p>
             )}
