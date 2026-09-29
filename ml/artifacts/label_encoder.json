@@ -1,0 +1,18 @@
+{
+  "classes": [
+    "ADD_ITEM",
+    "CLEAR_COMPLETED",
+    "COMPLETE_ITEM",
+    "FIND_SUBSTITUTE",
+    "GET_RECOMMENDATIONS",
+    "GOODBYE",
+    "GREETING",
+    "HELP",
+    "REMOVE_ITEM",
+    "SEARCH_PRODUCT",
+    "THANKS",
+    "UNCOMPLETE_ITEM",
+    "UNKNOWN",
+    "UPDATE_QUANTITY"
+  ]
+}

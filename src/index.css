@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --Speak2Cart-bg: #FAF7F2;
+    --Speak2Cart-surface: #FFFFFF;
+    --Speak2Cart-card: #F4EFE6;
+    --Speak2Cart-card-hover: #ECE6DA;
+    --Speak2Cart-forest: #2C4A3E;
+    --Speak2Cart-forest-hover: #223B31;
+    --Speak2Cart-terracotta: #E06D53;
+    --Speak2Cart-terracotta-hover: #C85B42;
+    --Speak2Cart-cream: #F5EBE1;
+    --Speak2Cart-text: #1C1917;
+    --Speak2Cart-muted: #78716C;
+    --Speak2Cart-border: #E7E0D5;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--Speak2Cart-bg);
+    color: var(--Speak2Cart-text);
+  }
+
+  h1, h2, h3, .font-serif-editorial {
+    font-family: 'Newsreader', Georgia, serif;
+  }
+}
+
+/* Custom Utilities */
+.bg-Speak2Cart-bg { background-color: #FAF7F2; }
+.bg-Speak2Cart-surface { background-color: #FFFFFF; }
+.bg-Speak2Cart-card { background-color: #F4EFE6; }
+.bg-Speak2Cart-card-hover { background-color: #ECE6DA; }
+.bg-Speak2Cart-forest { background-color: #2C4A3E; }
+.bg-Speak2Cart-terracotta { background-color: #E06D53; }
+.bg-Speak2Cart-cream { background-color: #F5EBE1; }
+
+.text-Speak2Cart-forest { color: #2C4A3E; }
+.text-Speak2Cart-terracotta { color: #E06D53; }
+.text-Speak2Cart-muted { color: #78716C; }
+
+.border-Speak2Cart-border { border-color: #E7E0D5; }
+
+/* Custom Keyframe Animations for Voice Orb & Audio Waveform */
+@keyframes orbPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(44, 74, 62, 0.25);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 24px rgba(44, 74, 62, 0);
+  }
+}
+
+@keyframes waveBar {
+  0%, 100% { height: 12px; }
+  50% { height: 36px; }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-orb-pulse {
+  animation: orbPulse 2.4s infinite ease-in-out;
+}
+
+.animate-wave-bar-1 { animation: waveBar 0.9s infinite ease-in-out 0.1s; }
+.animate-wave-bar-2 { animation: waveBar 0.9s infinite ease-in-out 0.3s; }
+.animate-wave-bar-3 { animation: waveBar 0.9s infinite ease-in-out 0.2s; }
+.animate-wave-bar-4 { animation: waveBar 0.9s infinite ease-in-out 0.4s; }
+
+.animate-float {
+  animation: floatGentle 4s infinite ease-in-out;
+}
+
+/* Custom Scrollbar for Editorial Stream */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #E7E0D5;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4CBBC;
+}

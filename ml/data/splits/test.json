@@ -1,0 +1,354 @@
+[
+  {
+    "text": "mark bread as done",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "i need to buy bananas again",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "check off olive oil",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "good afternoon",
+    "intent": "GREETING"
+  },
+  {
+    "text": "i need milk",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "how do i check off an item",
+    "intent": "HELP"
+  },
+  {
+    "text": "set yogurt to 5 tubs",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "add a pack of batteries",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "good afternoon everyone",
+    "intent": "GREETING"
+  },
+  {
+    "text": "howdy assistant",
+    "intent": "GREETING"
+  },
+  {
+    "text": "can you assist me",
+    "intent": "HELP"
+  },
+  {
+    "text": "have a good night",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "remove finished groceries",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "make potatoes 5 pounds",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "are there any deals",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "what is the weather like",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "substitute for paprika",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "you're awesome",
+    "intent": "THANKS"
+  },
+  {
+    "text": "later",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "mark cookies as done",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "mark potatoes as not done",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "find extra virgin olive oil",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "completed paper towels",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "what is the population of the world",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "mark bread as not done",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "clear olive oil",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "what else do i need",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "i need to buy laundry detergent again",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "clear completed items",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "hey assistant",
+    "intent": "GREETING"
+  },
+  {
+    "text": "bought the milk",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "remove checked off items",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "great thanks",
+    "intent": "THANKS"
+  },
+  {
+    "text": "what's the best movie this year",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "who is the richest person",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "make soda 2 packs",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "play some music",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "delete spinach",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "recommend groceries",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "find fluoride toothpaste",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "put 1 loaf of bread on the list",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "delete wine",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "uncheck milk",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "remove the things i bought",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "swap for cumin",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "remove apples",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "hi there everyone",
+    "intent": "GREETING"
+  },
+  {
+    "text": "change batteries to 2 packs",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "perfect thank you",
+    "intent": "THANKS"
+  },
+  {
+    "text": "add laundry detergent",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "what's in season",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "delete what's done",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "clear the checked off things",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "update onions to 4",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "hey guys",
+    "intent": "GREETING"
+  },
+  {
+    "text": "set spinach to 2 bags",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "how to lose weight",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "remove the items i bought",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "look for bread under $5",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "bought the laundry detergent",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "what is the square root of 144",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "remove all checked items",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "turn on the lights",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "i got the milk",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "please add three bottles of water",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "what did i forget",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "thank you sir",
+    "intent": "THANKS"
+  },
+  {
+    "text": "look for potato chips",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "show me what you can do",
+    "intent": "HELP"
+  },
+  {
+    "text": "what's the news today",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "i need to buy milk again",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "add a bottle of wine",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "good evening",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "look for whole wheat bread",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "find chicken breast",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "change cookies to 4 packs",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "buy onions",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "add salt",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "what can i ask you",
+    "intent": "HELP"
+  },
+  {
+    "text": "take tomatoes off",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "how to tie a tie",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "change carrots to 3 pounds",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "completed onions",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "search for soft toilet paper",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "look for cheddar cheese",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "what do you recommend",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "get 3 potatoes",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "make beef 2 pounds",
+    "intent": "UPDATE_QUANTITY"
+  }
+]

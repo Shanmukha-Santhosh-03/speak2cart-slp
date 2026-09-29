@@ -1,0 +1,346 @@
+[
+  {
+    "text": "change laundry detergent to 2 bottles",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "is there an alternative to soy sauce",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "hi there",
+    "intent": "GREETING"
+  },
+  {
+    "text": "catch you later",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "i got the toothpaste",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "substitute for brown sugar",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "delete milk",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "is that all",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "remove potatoes",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "hi assistant what's up",
+    "intent": "GREETING"
+  },
+  {
+    "text": "find healthy cereal",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "thanks so much",
+    "intent": "THANKS"
+  },
+  {
+    "text": "delete all completed items",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "see you soon",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "buy a bag of chips",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "look for red wine",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "bye bye assistant",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "look for cane sugar",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "cheese is done",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "clear bread",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "i got the dish soap",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "what can i use instead of buttermilk",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "see ya",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "bought the toilet paper",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "how are things assistant",
+    "intent": "GREETING"
+  },
+  {
+    "text": "any suggestions for groceries",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "remove the completed things",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "clear cookies",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "delete the things that are done",
+    "intent": "CLEAR_COMPLETED"
+  },
+  {
+    "text": "how do i find a substitute",
+    "intent": "HELP"
+  },
+  {
+    "text": "put three bottles of water on my shopping list",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "anything else",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "change milk to 2",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "what is the best programming language",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "find diet soda",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "how to add groceries",
+    "intent": "HELP"
+  },
+  {
+    "text": "i need to buy cereal again",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "soda is not done",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "how do you make a cake",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "swap for heavy cream",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "uncheck apples",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "how to invest in stocks",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "how's it going",
+    "intent": "GREETING"
+  },
+  {
+    "text": "gotta go now",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "is there an alternative to sugar",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "drop chicken",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "take milk off my list",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "what can the voice assistant do",
+    "intent": "HELP"
+  },
+  {
+    "text": "buy a box of cereal",
+    "intent": "ADD_ITEM"
+  },
+  {
+    "text": "hi assistant",
+    "intent": "GREETING"
+  },
+  {
+    "text": "i have to go now",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "find AA batteries",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "what else should i add",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "clear beef",
+    "intent": "REMOVE_ITEM"
+  },
+  {
+    "text": "cya assistant",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "uncomplete onions",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "uncheck olive oil",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "alternative to whole wheat flour",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "how to fix a flat tire",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "find antibacterial dish soap",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "substitute for almond milk",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "good morning",
+    "intent": "GREETING"
+  },
+  {
+    "text": "completed water",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "what do i usually buy",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "recommend something",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "how are you assistant",
+    "intent": "GREETING"
+  },
+  {
+    "text": "make toilet paper 1 pack",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "cya",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "trash bags are done",
+    "intent": "COMPLETE_ITEM"
+  },
+  {
+    "text": "catch you soon",
+    "intent": "GOODBYE"
+  },
+  {
+    "text": "search for baby carrots",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "is there an alternative to oregano",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "i owe you one",
+    "intent": "THANKS"
+  },
+  {
+    "text": "what are the commands",
+    "intent": "HELP"
+  },
+  {
+    "text": "mark wine as not done",
+    "intent": "UNCOMPLETE_ITEM"
+  },
+  {
+    "text": "search for greek yogurt",
+    "intent": "SEARCH_PRODUCT"
+  },
+  {
+    "text": "what can i use instead of baking powder",
+    "intent": "FIND_SUBSTITUTE"
+  },
+  {
+    "text": "you're the best",
+    "intent": "THANKS"
+  },
+  {
+    "text": "thanks for your assistance",
+    "intent": "THANKS"
+  },
+  {
+    "text": "set an alarm",
+    "intent": "UNKNOWN"
+  },
+  {
+    "text": "give me some examples",
+    "intent": "HELP"
+  },
+  {
+    "text": "do i need anything",
+    "intent": "GET_RECOMMENDATIONS"
+  },
+  {
+    "text": "thanks a million",
+    "intent": "THANKS"
+  },
+  {
+    "text": "thank you a million",
+    "intent": "THANKS"
+  },
+  {
+    "text": "set fish to 1 pound",
+    "intent": "UPDATE_QUANTITY"
+  },
+  {
+    "text": "put milk on my shopping list",
+    "intent": "ADD_ITEM"
+  }
+]
